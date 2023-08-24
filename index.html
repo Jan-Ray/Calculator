@@ -15,7 +15,7 @@
     }
     #calculator {
       margin: 50px auto;
-      width: 400px; /* Adjusted width */
+      width: 400px;
       border: 1px solid #ccc;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -29,9 +29,9 @@
       padding: 5px;
     }
     #calculator button {
-      width: 80px; /* Adjusted button width */
-      height: 50px; /* Adjusted button height */
-      font-size: 20px; /* Adjusted font size */
+      width: 80px;
+      height: 50px;
+      font-size: 20px;
       margin: 5px;
     }
   </style>
@@ -60,6 +60,7 @@
       <button onclick="appendOperator('/')">/</button>
       <br>
       <button onclick="appendDecimal()">.</button>
+      <button onclick="backspace()">←</button>
       <button onclick="clearDisplay()">C</button>
       <button onclick="calculate()">=</button>
     </div>
@@ -71,7 +72,7 @@
       function appendNumber(number) {
         currentInput += number;
         document.getElementById("display").value = currentInput;
-        if (number === '.' && currentInput.includes('.')) {
+        if (number === '.' && (currentOperator !== '' || currentInput.includes('.'))) {
           return;
         }
       }
@@ -89,6 +90,11 @@
           currentInput += " " + operator + " ";
           document.getElementById("display").value = currentInput;
         }
+      }
+
+      function backspace() {
+        currentInput = currentInput.slice(0, -1);
+        document.getElementById("display").value = currentInput;
       }
       
       function clearDisplay() {

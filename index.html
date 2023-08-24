@@ -59,6 +59,7 @@
       <button onclick="appendOperator('%')">%</button>
       <button onclick="appendOperator('/')">/</button>
       <br>
+      <button onclick="appendDecimal()">.</button>
       <button onclick="clearDisplay()">C</button>
       <button onclick="calculate()">=</button>
     </div>
@@ -70,6 +71,16 @@
       function appendNumber(number) {
         currentInput += number;
         document.getElementById("display").value = currentInput;
+        if (number === '.' && currentInput.includes('.')) {
+          return;
+        }
+      }
+
+      function appendDecimal() {
+        if (!currentInput.includes('.')) {
+          currentInput += '.';
+          document.getElementById("display").value = currentInput;
+        }
       }
     
       function appendOperator(operator) {

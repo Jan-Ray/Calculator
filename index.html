@@ -64,60 +64,59 @@
       <button onclick="clearDisplay()">C</button>
       <button onclick="calculate()">=</button>
     </div>
-  
-    <script>
-      let currentInput = "";
-      let currentOperator = "";
-      
-      function appendNumber(number) {
-        currentInput += number;
-        document.getElementById("display").value = currentInput;
-        if (number === '.' && (currentOperator !== '' || currentInput.includes('.'))) {
-          return;
-        }
-      }
-
-      function appendDecimal() {
-        if (!currentInput.includes('.')) {
-          currentInput += '.';
-          document.getElementById("display").value = currentInput;
-        }
-      }
-    
-      function appendOperator(operator) {
-        if (currentInput !== "") {
-          currentOperator = operator;
-          currentInput += " " + operator + " ";
-          document.getElementById("display").value = currentInput;
-        }
-      }
-
-      function backspace() {
-        currentInput = currentInput.slice(0, -1);
-        document.getElementById("display").value = currentInput;
-      }
-      
-      function clearDisplay() {
-        currentInput = "";
-        currentOperator = "";
-        document.getElementById("display").value = "";
-      }
-      
-      function calculate() {
-        if (currentInput !== "") {
-          try {
-            currentInput = currentInput.replace(/\^/g, '**');
-            
-            const result = eval(currentInput);
-            document.getElementById("display").value = result;
-            currentInput = result.toString();
-            currentOperator = "";
-          } 
-          catch (error) {
-          document.getElementById("display").value = "Error";
-         }
-        }
-      }
-    </script>
   </body>
+  <script>
+    let currentInput = "";
+    let currentOperator = "";
+    
+    function appendNumber(number) {
+      currentInput += number;
+      document.getElementById("display").value = currentInput;
+      if (number === '.' && (currentOperator !== '' || currentInput.includes('.'))) {
+        return;
+      }
+    }
+
+    function appendDecimal() {
+      if (!currentInput.includes('.')) {
+        currentInput += '.';
+        document.getElementById("display").value = currentInput;
+      }
+    }
+  
+    function appendOperator(operator) {
+      if (currentInput !== "") {
+        currentOperator = operator;
+        currentInput += " " + operator + " ";
+        document.getElementById("display").value = currentInput;
+      }
+    }
+
+    function backspace() {
+      currentInput = currentInput.slice(0, -1);
+      document.getElementById("display").value = currentInput;
+    }
+    
+    function clearDisplay() {
+      currentInput = "";
+      currentOperator = "";
+      document.getElementById("display").value = "";
+    }
+    
+    function calculate() {
+      if (currentInput !== "") {
+        try {
+          currentInput = currentInput.replace(/\^/g, '**');
+          
+          const result = eval(currentInput);
+          document.getElementById("display").value = result;
+          currentInput = result.toString();
+          currentOperator = "";
+        } 
+        catch (error) {
+        document.getElementById("display").value = "Error";
+        }
+      }
+    }
+  </script>
 </html>

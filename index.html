@@ -118,5 +118,34 @@
         }
       }
     }
+
+    document.addEventListener("keydown", function(event) {
+      const key = event.key;  
+
+      if (/\d/.test(key)) {
+        appendNumber(parseInt(key));
+      } 
+      else if (key === "+" || key === "-" || key === "*" || key === "/") {
+        appendOperator(key);
+      } 
+      else if (key === "^") {
+        appendOperator("^");
+      } 
+      else if (key === "%" || key === "Enter") {
+        appendOperator("%");
+      } 
+      else if (key === ".") {
+        appendDecimal();
+      } 
+      else if (key === "Backspace") {
+        backspace();
+      } 
+      else if (key === "Escape") {
+        clearDisplay();
+      } 
+      else if (key === "=" || key === "Enter") {
+        calculate();
+      }
+    });
   </script>
 </html>
